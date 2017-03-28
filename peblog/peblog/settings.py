@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
     'blog',
 ]
 
@@ -133,3 +135,34 @@ ALLOWED_HOSTS = ['*']
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+
+
+# CKEDITOR
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = "js/jquery.min.js"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+    'basic': {
+        'toolbar': 'Basic',
+    },
+    'customized': {
+        'extraPlugins': "codesnippet",
+        'toolbar': [["Source"],
+                    ["Format", "Font", "Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "SpellChecker"],
+                    ['Undo', 'Redo'],
+                    ['NumberedList', 'BulletedList'],
+                    ["Indent", "Outdent", 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                    ["Link", "Unlink", "Anchor"],
+                    ["codesnippet", "Smiley", "Image", "Table"],
+                    ["Maximize"]
+                    ],
+    },
+}
+
