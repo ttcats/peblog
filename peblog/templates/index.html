@@ -38,6 +38,7 @@
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
   </head>
 
   <body>
@@ -45,7 +46,7 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Home</a>
+          <a class="blog-nav-item active" href="{% url 'blog:index' %}">Home</a>
           <a class="blog-nav-item" href="#">New features</a>
           <a class="blog-nav-item" href="#">Press</a>
           <a class="blog-nav-item" href="#">New hires</a>
@@ -54,10 +55,12 @@
       </div>
     </div>
 
+
+
     <div class="container">
 
       <div class="blog-header">
-        <h1 class="blog-title">Pemonkey Blog</h1>
+        <h1 class="blog-title"><a href="{% url 'blog:index' %}">Pemonkey Blog</a></h1>
         <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
       </div>
 
@@ -65,12 +68,16 @@
       <div class="row">
 
         <div class="col-sm-8 blog-main">
+         {% block content %}
+
+         {% block archives %}
+
 
           {% for blog in blogs %}
           <div class="blog-post">
-            <h2 class="blog-post-title">{{ blog.title|capfirst }}</h2>
+            <h2 class="blog-post-title"><a href="{% url 'blog:article'  blog.id|add:1000 %}">{{ blog.title|capfirst }}</a></h2>
             <p class="blog-post-meta">发表于  {{ blog.timestamp|date:"Y-m-d H:i:s" }}  |  作者  {{ blog.author }}</p>
-            <p class="tag">{% for tag in blog.tag.all %} <a href="#">{{ tag }}</a>{% endfor %}</p>
+            <p class="tag">{% for tag in blog.tag.all %} <a href="{% url 'blog:tag' tag %}">{{ tag }}</a>{% endfor %}</p>
             <div>
             {{ blog.body|safe|truncatewords_html:20 }}
             </div>
@@ -78,15 +85,26 @@
           <hr>
           {% endfor %}
 
+          {% endblock %}
+
           <nav>
             <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
+              {% if page_id and next_id %}
+              <li class="previous"><a href="#">&larr; Previous</a></li>
+              <li class="next"><a href="#">Next &rarr;</a></li>
+              {% elif not page_id and next_id  %}
+              <p>321</p>
+              {% elif page_id and not next_id  %}
+              <p>321</p>
+              {% endif %}
+              <!--<li class="previous"><a href="#">&larr; Previous</a></li>
+              <li class="next"><a href="#">Next &rarr;</a></li>-->
             </ul>
           </nav>
 
-        </div><!-- /.blog-main -->
 
+       {% endblock %}
+       </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
@@ -94,20 +112,11 @@
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
           </div>
           <div class="sidebar-module">
-            <h4>Archives</h4>
+            <h4>文章归档</h4>
             <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-              <li><a href="#">February 2014</a></li>
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
+              {% for key,value in archives.items %}
+              <li><a href="{% url 'blog:archive' key %}">{{ key }}( {{ value }} )</a></li>
+              {% endfor %}
             </ol>
           </div>
           <div class="sidebar-module">

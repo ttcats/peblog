@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<hr>
+
+
+{% if articles %}
+
+ <div class="blog-post">
+   <h2 class="blog-post-title">{{ articles.title|capfirst }}</h2>
+   <p class="blog-post-meta">发表于  {{ articles.timestamp|date:"Y-m-d H:i:s" }}  |  作者  {{ articles.author }}</p>
+   <p class="tag">{% for tag in articles.tag.all %} <a href="#">{{ tag }}</a>{% endfor %}</p>
+   <div>
+      {{ articles.body|safe }}
+   </div>
+ </div>
+
+ <div>
+   <ul class="pager">
+     {% if last_blog %}
+     <li class="previous"><a href="/blog/articles/{{ last_blog.id|add:1000 }}">&larr; {{ last_blog.title }}</a></li>
+     {% else %}
+     <li class="preious"><a>已经是第一篇</a></li>
+     {% endif %}
+     {% if naxt_blog %}
+     <li class="next"><a href="/blog/articles/{{ naxt_blog.id|add:1000 }}">{{ naxt_blog.title }} &rarr;</a></li>
+     {% else %}
+     <li class="next"><a>已经是最后一篇</a></li>
+     {% endif %}
+     
+   </ul>
+ </div>
+
+{% else %}
+<div class="blog-post">
+404
+</div>
+{% endif %}
+
+{% endblock %}
