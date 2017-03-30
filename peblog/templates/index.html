@@ -59,14 +59,14 @@
 
     <div class="container">
 
-      <div class="blog-header">
+      <div class="blog-header ">
         <h1 class="blog-title"><a href="{% url 'blog:index' %}">Pemonkey Blog</a></h1>
         <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
       </div>
 
 
-      <div class="row">
 
+      <div class="row">
         <div class="col-sm-8 blog-main">
          {% block content %}
 
@@ -96,8 +96,6 @@
               {% elif page_id and not nextpage_id  %}
               <li class="previous"><a href="/blog/?page={{ page_id|add:-1 }}">&larr; Previous</a></li>
               {% endif %}
-              <!--<li class="previous"><a href="#">&larr; Previous</a></li>
-              <li class="next"><a href="#">Next &rarr;</a></li>-->
             </ul>
           </nav>
 
@@ -108,9 +106,10 @@
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
+            <h4>关于</h4>
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
           </div>
+
           <div class="sidebar-module">
             <h4>文章归档</h4>
             <ol class="list-unstyled">
@@ -119,8 +118,24 @@
               {% endfor %}
             </ol>
           </div>
+
+
           <div class="sidebar-module">
-            <h4>Elsewhere</h4>
+            <h4>搜索</h4>
+              <div class="input-group">
+               <input class="form-control " placeholder="搜索..."></input>
+               <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 
+                </button>
+               </span>
+              </div>
+          </div>
+
+
+
+          <div class="sidebar-module">
+            <h4>友情链接</h4>
             <ol class="list-unstyled">
               <li><a href="#">GitHub</a></li>
               <li><a href="#">Twitter</a></li>

@@ -16,7 +16,7 @@
    </div>
  </div>
 
- <div>
+ <nav>
    <ul class="pager">
      {% if next_blog %}
      <li class="previous"><a href="/blog/articles/{{ next_blog.id|add:1000 }}">&larr; {{ next_blog.title }}</a></li>
@@ -26,7 +26,14 @@
      {% endif %}
      
    </ul>
- </div>
+ </nav>
+
+
+<div>
+ <h3 class="lead blog-description">网友评论</h3>
+ <hr>
+
+</div>
 
 {% else %}
 <div class="blog-post">
