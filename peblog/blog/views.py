@@ -54,9 +54,9 @@ def blog(request,number):
     blog_id = int(number) - 1000
     try:
         articles = Blog.objects.get(id=blog_id)
-        naxt_blog = Blog.objects.filter(timestamp__gt=articles.timestamp).first()
-        last_blog = Blog.objects.filter(timestamp__lt=articles.timestamp).last()
-        print(last_blog,naxt_blog)
+        last_blog = Blog.objects.filter(timestamp__lt=articles.timestamp).order_by('timestamp').last()
+        next_blog = Blog.objects.filter(timestamp__gt=articles.timestamp).order_by('timestamp').first()
+        print(last_blog,next_blog)
     except Exception as e:
         print(e)
 
