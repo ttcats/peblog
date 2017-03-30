@@ -166,3 +166,6 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+
+# page
+ARTICLE_NUMBER = 3

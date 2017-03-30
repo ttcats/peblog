@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block pager %}
+
+
+          <nav>
+            <ul class="pager">
+              {% if page_id and nextpage_id %}
+              <li class="previous"><a href="/blog/tags/{{ tag }}/?page={{ page_id|add:-1 }}">&larr; Previous</a></li>
+              <li class="next"><a href="/blog/tags/{{ tag }}/?page={{ nextpage_id }}">Next &rarr;</a></li>
+              {% elif not page_id and nextpage_id  %}
+              <li class="next"><a href="/blog/tags/{{ tag }}/?page={{ nextpage_id }}">Next &rarr;</a></li>
+              {% elif page_id and not nextpage_id  %}
+              <li class="previous"><a href="/blog/tags/{{ tag }}/?page={{ page_id|add:-1 }}">&larr; Previous</a></li>
+              {% endif %}
+              <!--<li class="previous"><a href="#">&larr; Previous</a></li>
+              <li class="next"><a href="#">Next &rarr;</a></li>-->
+            </ul>
+          </nav>
+
+
+
+{% endblock %}

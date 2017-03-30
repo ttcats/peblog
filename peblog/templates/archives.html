@@ -1,19 +1,22 @@
 {% extends 'index.html' %}
 
-{% block archives %}
+{% block pager %}
 
 
-  {% for blog in times_blog %}
-  <div class="blog-post">
-    <h2 class="blog-post-title"><a href="{% url 'blog:article'  blog.id|add:1000 %}">{{ blog.title|capfirst }}</a></h2>
-     <p class="blog-post-meta">发表于  {{ blog.timestamp|date:"Y-m-d H:i:s" }}  |  作者  {{ blog.author }}</p>
-     <p class="tag">{% for tag in blog.tag.all %} <a href="#">{{ tag }}</a>{% endfor %}</p>
-     <div>
-      {{ blog.body|safe|truncatewords_html:20 }}
-     </div>
-  </div><!-- /.blog-post -->
-    <hr>
-   {% endfor %}
+          <nav>
+            <ul class="pager">
+              {% if page_id and nextpage_id %}
+              <li class="previous"><a href="/blog/archives/{{ times }}/?page={{ page_id|add:-1 }}">&larr; Previous</a></li>
+              <li class="next"><a href="/blog/archives/{{ times }}/?page={{ nextpage_id }}">Next &rarr;</a></li>
+              {% elif not page_id and nextpage_id  %}
+              <li class="next"><a href="/blog/archives/{{ times }}/?page={{ nextpage_id }}">Next &rarr;</a></li>
+              {% elif page_id and not nextpage_id  %}
+              <li class="previous"><a href="/blog/archives/{{ times }}/?page={{ page_id|add:-1 }}">&larr; Previous</a></li>
+              {% endif %}
+              <!--<li class="previous"><a href="#">&larr; Previous</a></li>
+              <li class="next"><a href="#">Next &rarr;</a></li>-->
+            </ul>
+          </nav>
 
 
 

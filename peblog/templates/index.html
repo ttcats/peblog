@@ -70,7 +70,6 @@
         <div class="col-sm-8 blog-main">
          {% block content %}
 
-         {% block archives %}
 
 
           {% for blog in blogs %}
@@ -85,23 +84,24 @@
           <hr>
           {% endfor %}
 
-          {% endblock %}
+         {% block pager %}
 
           <nav>
             <ul class="pager">
-              {% if page_id and next_id %}
-              <li class="previous"><a href="#">&larr; Previous</a></li>
-              <li class="next"><a href="#">Next &rarr;</a></li>
-              {% elif not page_id and next_id  %}
-              <p>321</p>
-              {% elif page_id and not next_id  %}
-              <p>321</p>
+              {% if page_id and nextpage_id %}
+              <li class="previous"><a href="/blog/?page={{ page_id|add:-1 }}">&larr; Previous</a></li>
+              <li class="next"><a href="/blog/?page={{ nextpage_id }}">Next &rarr;</a></li>
+              {% elif not page_id and nextpage_id  %}
+              <li class="next"><a href="/blog/?page={{ nextpage_id }}">Next &rarr;</a></li>
+              {% elif page_id and not nextpage_id  %}
+              <li class="previous"><a href="/blog/?page={{ page_id|add:-1 }}">&larr; Previous</a></li>
               {% endif %}
               <!--<li class="previous"><a href="#">&larr; Previous</a></li>
               <li class="next"><a href="#">Next &rarr;</a></li>-->
             </ul>
           </nav>
 
+          {% endblock %}
 
        {% endblock %}
        </div><!-- /.blog-main -->
