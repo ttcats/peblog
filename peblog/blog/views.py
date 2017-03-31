@@ -1,5 +1,6 @@
 #coding=utf-8
 from django.shortcuts import render
+from django.http.response import HttpResponse, HttpResponseRedirect
 from .models import *
 from django.conf import settings
 
@@ -81,3 +82,12 @@ def tag(request,tag):
     [page_id,nextpage_id,blogs] = pages_info(page_id,allblogs)
     return render(request, 'tags.html',locals())
 
+def search(request):
+    #print(request.GET)
+    archives = archives_info()
+    page_id = request.GET.get('page',0)
+    search_info = request.GET.get('search','')
+
+    allblogs = Blog.objects.filter(title__icontains=search_info)
+    [page_id,nextpage_id,blogs] = pages_info(page_id,allblogs)
+    return render(request, 'search.html',locals())

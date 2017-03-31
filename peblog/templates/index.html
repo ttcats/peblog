@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
+    <title>PeBlog</title>
 
     <!-- Bootstrap core CSS -->
     <!--<link href="/static/css/bootstrap.min.css" rel="stylesheet">-->
@@ -38,12 +38,11 @@
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
   </head>
 
   <body>
 
-    <div class="blog-masthead">
+<!--    <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item active" href="{% url 'blog:index' %}">Home</a>
@@ -53,15 +52,15 @@
           <a class="blog-nav-item" href="#">About</a>
         </nav>
       </div>
-    </div>
+    </div>-->
 
 
 
     <div class="container">
 
       <div class="blog-header ">
-        <h1 class="blog-title"><a href="{% url 'blog:index' %}">Pemonkey Blog</a></h1>
-        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+        <h1 class="blog-title"><a href="{% url 'blog:index' %}">PeBlog</a></h1>
+        <p class="lead blog-description">The best time to plant a tree was a decade ago, and following is now.</p>
       </div>
 
 
@@ -110,6 +109,21 @@
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
           </div>
 
+
+          <div class="sidebar-module">
+            <h4>搜索</h4>
+             <form action="/blog/search/" method="get" id="research">
+              <div class="input-group">
+               <input class="form-control " id="search" placeholder="搜索..."></input>
+               <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onClick="research('research')">
+                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 
+                </button>
+               </span>
+              </div>
+             </form>
+          </div>
+
           <div class="sidebar-module">
             <h4>文章归档</h4>
             <ol class="list-unstyled">
@@ -117,19 +131,6 @@
               <li><a href="{% url 'blog:archive' key %}">{{ key }}( {{ value }} )</a></li>
               {% endfor %}
             </ol>
-          </div>
-
-
-          <div class="sidebar-module">
-            <h4>搜索</h4>
-              <div class="input-group">
-               <input class="form-control " placeholder="搜索..."></input>
-               <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 
-                </button>
-               </span>
-              </div>
           </div>
 
 
@@ -149,9 +150,8 @@
     </div><!-- /.container -->
 
     <footer class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
       <p>
-        <a href="#">Back to top</a>
+        <a href="">Back to top</a>
       </p>
     </footer>
 
@@ -164,10 +164,14 @@
             CKEDITOR.replace( 'editor' , {uiColor: '#9AB8F3'});
     </script>
     <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/blog.js"></script>
     <script>window.jQuery || document.write('<script src="/static/js/jquery.min.js"><\/script>')</script>
     <script src="/static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+</script>
+
+
   </body>
 </html>
 
