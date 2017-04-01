@@ -142,7 +142,7 @@ STATICFILES_DIRS = [
 # CKEDITOR
 #STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_UPLOAD_PATH = "upload/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_JQUERY_URL = "js/jquery.min.js"
 
@@ -162,6 +162,7 @@ CKEDITOR_CONFIGS = {
                     ["Indent", "Outdent", 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
                     ["Link", "Unlink", "Anchor"],
                     ["codesnippet", "Smiley", "Image", "Table"],
+                    ["codesnippet", "Smiley", "Table"],
                     ["Maximize"]
                     ],
     },

@@ -1,11 +1,9 @@
 #coding=utf-8
 from django.shortcuts import render
-from django.http.response import HttpResponse, HttpResponseRedirect
 from .models import *
 from django.conf import settings
 
 from collections import Counter
-# Create your views here.
 
 
 # 按时间归档
@@ -21,7 +19,6 @@ def archives_info():
 # 分页
 def pages_info(page_id,allblogs):
     articlenumber = settings.ARTICLE_NUMBER
-    
     page_id = (page_id,None)[int(page_id)==0]
     if page_id == None and len(allblogs) <= int(articlenumber):
         blogs = allblogs
@@ -36,7 +33,6 @@ def pages_info(page_id,allblogs):
         nextpage_id = int(page_id) + 1
         if next_id >= len(allblogs):
             nextpage_id = None
-
     return [page_id,nextpage_id,blogs]
 
 

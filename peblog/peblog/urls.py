@@ -18,9 +18,10 @@ from django.contrib import admin
 
 from blog.views import *
 
+from . import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^$', index,name='index'),
     url(r'^blog/', include('blog.urls', namespace="blog")),
+    url(r'^admin/uploadimg', views.uploadimg, name='uploadimg'),
 ]

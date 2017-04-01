@@ -59,7 +59,7 @@
     <div class="container">
 
       <div class="blog-header ">
-        <h1 class="blog-title"><a href="{% url 'blog:index' %}">PeBlog</a></h1>
+        <h1 class="blog-title"><a href="{% url 'blog:index' %}">PeMonkey</a></h1>
         <p class="lead blog-description">The best time to plant a tree was a decade ago, and following is now.</p>
       </div>
 
@@ -70,7 +70,7 @@
          {% block content %}
 
 
-
+          {% if blogs %}
           {% for blog in blogs %}
           <div class="blog-post">
             <h2 class="blog-post-title"><a href="{% url 'blog:article'  blog.id|add:1000 %}">{{ blog.title|capfirst }}</a></h2>
@@ -82,9 +82,13 @@
           </div><!-- /.blog-post -->
           <hr>
           {% endfor %}
+          {% else %}
+          <div class="blog-post">
+          <p>404</p>
+          </div>
+          {% endif %}
 
          {% block pager %}
-
           <nav>
             <ul class="pager">
               {% if page_id and nextpage_id %}
@@ -97,7 +101,6 @@
               {% endif %}
             </ul>
           </nav>
-
           {% endblock %}
 
        {% endblock %}
