@@ -30,15 +30,20 @@
 
 
 <div class="sidebar-module">
- <h3 class="lead blog-description">网友评论</h3>
- <hr>
+  <h3 class="lead blog-description">网友评论</h3>
+  <hr>
  <p>
- <textarea class="form-control" rows="4"></textarea>
- </p>
- <p>
- <button type="submit" class="btn btn-primary">Submit</button>
- </p>
-
+  {% for info in articles.title_id.all %}
+  {{ info.randomname }} | {{ info.timestamp|date:"Y-m-d H:i:s" }}
+  <div>{{ info.intro }}</div>
+  <hr>
+  {% endfor %}
+  </p>
+ <form action="/blog/articles/{{ articles.id|add:1000 }}/comment/" method="post" id="reComment">
+  <p><a id="critic">MARS</a></p>
+  <p><textarea class="form-control" rows="4" id="comment"></textarea></p>
+  <p><button type="button" class="btn btn-primary" onClick="reComment('reComment')">Submit</button></p>
+ </form>
 </div>
 
 {% else %}

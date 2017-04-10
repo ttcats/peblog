@@ -35,3 +35,34 @@ function research(formId) {
                     }
                 }
 }
+
+
+
+function reComment(formId) {
+        var xmlHttp = createXmlHttp();
+        if(!xmlHttp) {
+                alert("您的浏览器不支持AJAX！");
+                return 0;
+        }
+        var F = document.getElementById(formId);
+
+        var comment = F.comment.value;
+	var critic = document.getElementById('critic').innerText;
+        if(comment=='')
+           {
+               alert('请输入内容！');
+               attime.focus();
+               return false;
+           }
+        var e = document.getElementById(formId);
+        var url = e.action;
+        var getData = "comment="+comment+"&critic="+critic;
+        xmlHttp.open("POST", url, true);
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttp.send(getData);
+        xmlHttp.onreadystatechange = function() {
+                if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        window.location.reload();
+                    }
+                }
+}

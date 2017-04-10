@@ -46,10 +46,10 @@ class Blog(models.Model):
 
 
 class BlogComment(models.Model):
-    title = models.ForeignKey(Blog)
+    title = models.ForeignKey(Blog,related_name="title_id")
     intro = models.CharField(max_length = 800)
     randomname = models.CharField(max_length = 30)
-
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

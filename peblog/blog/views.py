@@ -1,5 +1,7 @@
 #coding=utf-8
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from django.conf import settings
 
@@ -56,7 +58,6 @@ def blog(request,number):
         print(last_blog,next_blog)
     except Exception as e:
         print(e)
-
     return render(request, 'blog.html',locals())
 
 
@@ -87,3 +88,12 @@ def search(request):
     allblogs = Blog.objects.filter(title__icontains=search_info)
     [page_id,nextpage_id,blogs] = pages_info(page_id,allblogs)
     return render(request, 'search.html',locals())
+
+@csrf_exempt
+def comment(request,blogid):
+    blog_id = int(blogid) - 1000
+    title = Blog.objects.get(id=blog_id)
+    comment,critic = request.POST.get('comment'),request.POST.get('critic')
+    #print(comment,critic,title)
+    BlogComment.objects.create(title=title,intro=comment,randomname=critic)
+    return HttpResponse("ok")
