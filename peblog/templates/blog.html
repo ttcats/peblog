@@ -34,15 +34,15 @@
   <hr>
  <p>
   {% for info in articles.title_id.all %}
-  {{ info.randomname }} | {{ info.timestamp|date:"Y-m-d H:i:s" }}
+  <span>{{ info.randomname }} | {{ info.timestamp|date:"Y-m-d H:i:s" }}</span>
   <div>{{ info.intro }}</div>
   <hr>
   {% endfor %}
   </p>
  <form action="/blog/articles/{{ articles.id|add:1000 }}/comment/" method="post" id="reComment">
-  <p><a id="critic">MARS</a></p>
+  <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><span id="critic">MARS</span></p>
   <p><textarea class="form-control" rows="4" id="comment"></textarea></p>
-  <p><button type="button" class="btn btn-primary" onClick="reComment('reComment')">Submit</button></p>
+  <p><button type="button" class="btn btn-primary" onClick="reComment('reComment')">评论</button></p>
  </form>
 </div>
 
