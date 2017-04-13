@@ -2,13 +2,12 @@
 
 {% block content %}
 
-<hr>
 
 
 {% if articles %}
 
  <div class="blog-post">
-   <h2 class="blog-post-title">{{ articles.title|capfirst }}</h2>
+   <h2 class="blog-post-title">{{ articles.title }}</h2>
    <p class="blog-post-meta">发表于  {{ articles.timestamp|date:"Y-m-d H:i:s" }}  |  作者  {{ articles.author }}</p>
    <p class="tag">{% for tag in articles.tag.all %} <a href="{% url 'blog:tag' tag %}">{{ tag }}</a>{% endfor %}</p>
    <div>
