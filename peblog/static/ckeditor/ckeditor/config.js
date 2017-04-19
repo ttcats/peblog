@@ -30,6 +30,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
         config.codeSnippet_theme = 'pojoaque';
+        //config.codeSnippet_theme = 'zenburn';
 
         config.extraPlugins = 'codesnippet';
 
