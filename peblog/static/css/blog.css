@@ -191,22 +191,22 @@ h6, .h6 {
 }
 
 .blog-post .tag a {
-  line-height: 20px;
-  display: block;
-  float: left;
-  margin: 0 10px 10px 0;
-  padding: 0 10px;
-  border-radius: 10px;
-  -webkit-border-radius:10px;
-  -moz-border-radius:10px;
-  -khtml-border-radius:10px;
-  background:#f3f3f3;
-  text-decoration:none;
+  display: inline-block;
+  //margin: 15px 5px 0 0;
+  padding: 0px 10px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 15px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 15px;
+  -moz-background-clip: padding;
+  border-radius: 15px;
+  background-clip: padding-box;
+  text-decoration: none
 }
 
 .blog-post .tag a:hover {
-  background:#c00; 
-  color:#fff;
+  text-decoration: none;
+  border-color: #aaa;
 }
 
 .abortwell {
