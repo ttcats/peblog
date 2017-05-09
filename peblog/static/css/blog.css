@@ -156,6 +156,9 @@ h6, .h6 {
   color: #999;
 }
 
+.blog-post-ol {
+  margin-bottom: 0px;
+}
 
 /*
  * Footer
@@ -191,6 +194,7 @@ h6, .h6 {
 }
 
 .blog-post .tag a {
+  margin-bottom: 5px;
   display: inline-block;
   //margin: 15px 5px 0 0;
   padding: 0px 10px;

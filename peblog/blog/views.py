@@ -20,6 +20,12 @@ def archives_info():
     return archives
 
 
+# 按标签分类
+def tags_info():
+    alltags = BlogTag.objects.all()
+    return list( tags.tag for tags in alltags )
+
+
 # 分页
 def pages_info(page_id, allblogs):
     articlenumber = settings.ARTICLE_NUMBER
@@ -44,12 +50,14 @@ def index(request):
     page_id = request.GET.get('page', 0)
     allblogs = Blog.objects.order_by('-timestamp')
 
+    list_tags = tags_info()
     [page_id, nextpage_id, blogs] = pages_info(page_id, allblogs)
     archives = archives_info()
     return render(request, 'index.html', locals())
 
 
 def blog(request, number):
+    list_tags = tags_info()
     archives = archives_info()
     blog_id = int(number) - 1000
     try:
@@ -66,6 +74,7 @@ def blog(request, number):
 
 def archive(request, times):
     page_id = request.GET.get('page', 0)
+    list_tags = tags_info()
     archives = archives_info()
 
     allblogs = [blog for blog in Blog.objects.order_by(
@@ -78,6 +87,7 @@ def archive(request, times):
 def tag(request, tag):
     page_id = request.GET.get('page', 0)
     archives = archives_info()
+    list_tags = tags_info()
 
     allblogs = Blog.objects.filter(
         tag=BlogTag.objects.get(
@@ -89,6 +99,7 @@ def tag(request, tag):
 def search(request):
     # print(request.GET)
     archives = archives_info()
+    list_tags = tags_info()
     page_id = request.GET.get('page', 0)
     search_info = request.GET.get('search', '')
 
