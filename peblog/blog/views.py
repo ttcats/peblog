@@ -45,7 +45,6 @@ def pages_info(page_id, allblogs):
             nextpage_id = None
     return [page_id, nextpage_id, blogs]
 
-
 def index(request):
     page_id = request.GET.get('page', 0)
     allblogs = Blog.objects.order_by('-timestamp')

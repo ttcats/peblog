@@ -22,7 +22,7 @@ class BlogTag(models.Model):
     tag = models.CharField(max_length = 30)
 
     def __str__(self):
-        return self.tag
+        return str(self.tag)
 
     class Meta:
         verbose_name = u'标签'
@@ -39,7 +39,7 @@ class Blog(models.Model):
     timestamp = models.DateTimeField()
 
     def __str__(self):
-        return self.title
+        return str(self.title)
     class Meta:
         verbose_name = u'博客'
         verbose_name_plural = u'博客'
@@ -52,6 +52,6 @@ class BlogComment(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return str(self.title)
     class Meta:
         verbose_name = u'评论'
