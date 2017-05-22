@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from django.conf import settings
 
+from django.core.mail import send_mail
 from collections import Counter
 
 
@@ -114,4 +115,14 @@ def comment(request, blogid):
     comment, critic = request.POST.get('comment'), request.POST.get('critic')
     # print(comment,critic,title)
     BlogComment.objects.create(title=title, intro=comment, randomname=critic)
+
+    send_title = '评论: ' + title.title
+    send_content = '来自: ' + critic + '\n' + '内容: ' + comment
+    send_tomail = title.email
+    if send_tomail:
+        try:
+            send_mail(send_title,send_content,'pemonkey@sina.com',[send_tomail])
+        except Exception as e:
+            print(e)
+
     return HttpResponse("ok")

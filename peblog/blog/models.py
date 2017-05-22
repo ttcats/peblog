@@ -34,6 +34,7 @@ class Blog(models.Model):
     title = models.CharField(max_length = 150)
     tag = models.ManyToManyField(BlogTag,)
     author = models.CharField(max_length = 30)
+    email = models.EmailField(blank=True,null=True)
     #body = models.TextField()
     body = RichTextField()
     timestamp = models.DateTimeField()

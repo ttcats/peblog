@@ -167,3 +167,11 @@ CKEDITOR_CONFIGS = {
 
 # page
 ARTICLE_NUMBER = 3
+
+# mail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.sina.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'pemonkey@sina.com'
+EMAIL_HOST_PASSWORD = '*********'
