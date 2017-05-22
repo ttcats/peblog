@@ -8,7 +8,11 @@
 
  <div class="blog-post">
    <h2 class="blog-post-title">{{ articles.title }}</h2>
-   <p class="blog-post-meta">发表于  {{ articles.timestamp|date:"Y-m-d H:i:s" }}  |  作者 {% if articles.email %}<a title={{ articles.email }} >{% endif %} {{ articles.author }}</a> </p>
+   {% if articles.email %}
+   <p class="blog-post-meta">发表于  {{ articles.timestamp|date:"Y-m-d H:i:s" }}  |  作者 <a title={{ articles.email }} > {{ articles.author }}</a> </p>
+   {% else %}
+   <p class="blog-post-meta">发表于  {{ articles.timestamp|date:"Y-m-d H:i:s" }}  |  作者  {{ articles.author }}</p>
+   {% endif %}
    <p class="tag">{% for tag in articles.tag.all %} <a href="{% url 'blog:tag' tag %}">{{ tag }}</a>{% endfor %}</p>
    <div>
       {{ articles.body|safe }}
